@@ -1,0 +1,6 @@
+name: FoodEffects
+author: Xenophilicy
+version: 1.0.0
+main: Xenophilicy\FoodEffects\FoodEffects
+api: 3.0.0
+Description: Enables customizable effects for consuming items
