@@ -13,7 +13,7 @@ With this plugin, you are able to assign different effects to items so that when
 {
     "Items":{
         "Item-ID":[
-            [Effect-ID,Effect-Amplifier,Effect-Duration],
+            [Effect-ID,Effect-Amplifier,Effect-Duration]
         ]
     }
 }
