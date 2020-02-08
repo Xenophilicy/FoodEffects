@@ -6,7 +6,7 @@
 # [![Xenophilicy](https://file.xenoservers.net/Resources/GitHub-Resources/foodeffects.png)]()
 
 ## Information
-With this plugin, you are able to assign different effects to items so that when a player interacts with or consumes that item, they are given the effect for a set duration at a set effect level! All of these options can be set in the *items.json* file. The format along with some examples for the item listing can be found in both the *config.yml* file and down below if you ever get confused. If you would like a video example of the plugin in action, click [here](https://youtu.be/SbITnMk8jVE)
+With this plugin, you are able to assign different effects to items so that when a player interacts with or consumes that item, they are given the effect for a set duration at a set effect level! The format along with some examples for the item listing can be found in both the *config.yml* file and down below if you ever get confused. If you would like a video example of the plugin in action, click [here](https://youtu.be/SbITnMk8jVE)
 
 ## Item Formatting
 ```yaml
