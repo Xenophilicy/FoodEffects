@@ -20,7 +20,7 @@ With this plugin, you are able to assign different effects to items so that when
 Desired configuration:
 * When steak(ID = 364) is consumed, give blindness(ID = 15) level 1 for 10 seconds and strength(ID = 5) level 2 for 30 seconds
 * When an apple(ID = 260) is consumed, give speed(ID = 1) level 3 for 15 seconds and night vision(ID = 16) level 1 infinitely(0)
-* When interacting with a jungle sapling(ID = 6:3), give slowness(ID = 2) level 1 for 60 seconds, fire resistance(ID = 12) level 1 for 30 seconds, and peed(ID = 1) level 3 for 5 seconds
+* When interacting with a jungle sapling(ID = 6:3), give slowness(ID = 2) level 1 for 60 seconds, fire resistance(ID = 12) level 1 for 30 seconds, and speed(ID = 1) level 3 for 5 seconds
 * When interacting with a red mushroom(ID = 40), give slowness(ID = 2) level 1 for 5 seconds
 
 Configuration in config.yml:
