@@ -31,7 +31,6 @@ class FoodEffects extends PluginBase implements Listener {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveResource("config.yml");
         $this->config = new Config($this->getDataFolder()."config.yml", Config::YAML);
-        $this->getLogger()->info("FoodEffects has been enabled!");
         $version = $this->config->get("VERSION");
         if($version != "1.1.0"){
             $this->getLogger()->critical("You have updated FoodEffects but have an outdated config! Please delete your old config to continue using FoodEffects!");
