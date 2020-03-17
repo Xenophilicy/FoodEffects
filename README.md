@@ -1,12 +1,14 @@
 # FoodEffects
 [![](https://poggit.pmmp.io/shield.state/FoodEffects)](https://poggit.pmmp.io/p/FoodEffects)
 [![HitCount](http://hits.dwyl.io/Xenophilicy/FoodEffects.svg)](http://hits.dwyl.io/Xenophilicy/FoodEffects)
-![](https://img.shields.io/discord/490677165289897995.svg?style=flat-square)
+[![Discord Chat](https://img.shields.io/discord/490677165289897995.svg)](https://discord.gg/hNVehXe)
 
 # [![Xenophilicy](https://file.xenoservers.net/Resources/GitHub-Resources/foodeffects.png)]()
 
 ## Information
 With this plugin, you are able to assign different effects to items so that when a player interacts with or consumes that item, they are given the effect for a set duration at a set effect level! The format along with some examples for the item listing can be found in both the *config.yml* file and down below if you ever get confused. If you would like a video example of the plugin in action, click [here](https://youtu.be/SbITnMk8jVE)
+
+### [Click here to download FoodEffects from Poggit](https://poggit.pmmp.io/p/FoodEffects/)
 
 ## Item Formatting
 ```yaml
@@ -53,7 +55,7 @@ Non-Consumables:
 ***
 
 ## Dependencies
-**DevTools → https://github.com/pmmp/PocketMine-DevTools** *(If you are using the plugin folder method)*
+**DevTools → https://github.com/pmmp/PocketMine-DevTools** *(If you're running the plugin from source)*
 
 ## Credits
 * [Xenophilicy](https://github.com/Xenophilicy/)
