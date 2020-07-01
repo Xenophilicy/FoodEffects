@@ -15,12 +15,12 @@
 
 namespace Xenophilicy\FoodEffects;
 
-use pocketmine\plugin\PluginBase;
+use pocketmine\entity\{Effect, EffectInstance};
 use pocketmine\event\Listener;
-use pocketmine\event\player\{PlayerItemConsumeEvent,PlayerInteractEvent};
-use pocketmine\entity\{Effect,EffectInstance};
+use pocketmine\event\player\{PlayerInteractEvent, PlayerItemConsumeEvent};
+use pocketmine\plugin\PluginBase;
 
-class FoodEffects extends PluginBase implements Listener {
+class FoodEffects extends PluginBase implements Listener{
 
     private const CONFIG_VERSION = "1.2.0";
 
@@ -38,7 +38,7 @@ class FoodEffects extends PluginBase implements Listener {
             $this->getServer()->getPluginManager()->disablePlugin($this);
             return;
         }
-        $oldFile = $this->getDataFolder()."items.json";
+        $oldFile = $this->getDataFolder() . "items.json";
         if(file_exists($oldFile)){
             $this->getLogger()->critical("You have updated FoodEffects but are still using an outdated file. Please transfer your entries from 'items.json' to the new config file using the provided format to continue using FoodEffects!");
             $this->getServer()->getPluginManager()->disablePlugin($this);
@@ -62,33 +62,33 @@ class FoodEffects extends PluginBase implements Listener {
                     return;
                 }
                 if(!is_numeric($itemVal[0]) || !is_numeric($itemVal[1])){
-                    $this->getLogger()->warning("Invalid item ID found! Invalid item ID: ".$item." not supported, disabling plugin!");
+                    $this->getLogger()->warning("Invalid item ID found! Invalid item ID: " . $item . " not supported, disabling plugin!");
                     $this->getServer()->getPluginManager()->disablePlugin($this);
                     return;
                 }
                 foreach($effects as $effValues){
-                    $subscripts = [0,1,2];
+                    $subscripts = [0, 1, 2];
                     foreach($subscripts as $subscript){
                         if(!isset($effValues[$subscript])){
-                            $this->getLogger()->warning("Invalid effect string found, you must have 3 values for each effect. Effect for item ID: ".$item." is invalid, disabling plugin!");
+                            $this->getLogger()->warning("Invalid effect string found, you must have 3 values for each effect. Effect for item ID: " . $item . " is invalid, disabling plugin!");
                             $this->getServer()->getPluginManager()->disablePlugin($this);
                             return;
                         }
                     }
                     if(!is_numeric($effValues[0])){
-                        $this->getLogger()->warning("Invalid effect string found, all effect related arguments must be numerical! Invalid argument: ".$effValues[0]." not supported, disabling plugin!");
+                        $this->getLogger()->warning("Invalid effect string found, all effect related arguments must be numerical! Invalid argument: " . $effValues[0] . " not supported, disabling plugin!");
                         $this->getServer()->getPluginManager()->disablePlugin($this);
                         return;
                     }
                     if(!is_numeric($effValues[0]) || !is_numeric($effValues[1]) || !is_numeric($effValues[2])){
                         if($effValues[0] <= 26 && $effValues[0] >= 1){
                             if(!$effValues[1] <= 255){
-                                $this->getLogger()->warning("Invalid effect amplifier found, must be no greater than 255! Effect amplifier: ".$effValues[1]." not supported, disabling plugin!");
+                                $this->getLogger()->warning("Invalid effect amplifier found, must be no greater than 255! Effect amplifier: " . $effValues[1] . " not supported, disabling plugin!");
                                 $this->getServer()->getPluginManager()->disablePlugin($this);
                                 return;
                             }
                         }else{
-                            $this->getLogger()->warning("Invalid effect ID found, please see the ID list in the config.yml! Effect: ".$effValues[0]." not found, disabling plugin!");
+                            $this->getLogger()->warning("Invalid effect ID found, please see the ID list in the config.yml! Effect: " . $effValues[0] . " not found, disabling plugin!");
                             $this->getServer()->getPluginManager()->disablePlugin($this);
                             return;
                         }
@@ -101,7 +101,7 @@ class FoodEffects extends PluginBase implements Listener {
     public function onItemConsume(PlayerItemConsumeEvent $event){
         $player = $event->getPlayer();
         $item = $event->getItem();
-        $idFull = $item->getId().":".$item->getDamage();
+        $idFull = $item->getId() . ":" . $item->getDamage();
         if(!(round($player->getFood()) < 20) && self::$settings["Require-Hunger"]) return;
         foreach(self::$consumables as $key => $values){
             $effects = $values["Effects"];
@@ -111,7 +111,7 @@ class FoodEffects extends PluginBase implements Listener {
             if(!self::$settings["Affects-Hunger"]) $event->setCancelled();
             foreach($effects as $effValues){
                 $effectInstance = new EffectInstance(Effect::getEffect($effValues[0]));
-                $duration = $effValues[2] > 0 ? $effValues[2]*20 : 2147483647;
+                $duration = $effValues[2] > 0 ? $effValues[2] * 20 : 2147483647;
                 $player->addEffect($effectInstance->setAmplifier($effValues[1])->setDuration($duration));
             }
         }
@@ -119,17 +119,17 @@ class FoodEffects extends PluginBase implements Listener {
 
     public function onItemInteract(PlayerInteractEvent $event){
         $player = $event->getPlayer();
-        $item = $event->getItem();
-        $item->pop();
-        $idFull = $item->getId().":".$item->getDamage();
+        $item = $player->getInventory()->getItemInHand();
+        $idFull = $item->getId() . ":" . $item->getDamage();
         foreach(self::$nonConsumables as $key => $values){
             $effects = $values["Effects"];
             $name = isset($values["Name"]) ? $values["Name"] : false;
             if($name && $item->getCustomName() !== $name) continue;
             if($idFull !== (string)$key) continue;
+            $player->getInventory()->setItemInHand($item->pop());
             foreach($effects as $effValues){
                 $effectInstance = new EffectInstance(Effect::getEffect($effValues[0]));
-                $duration = $effValues[2] > 0 ? $effValues[2]*20 : 2147483647;
+                $duration = $effValues[2] > 0 ? $effValues[2] * 20 : 2147483647;
                 $player->addEffect($effectInstance->setAmplifier($effValues[1])->setDuration($duration));
             }
         }
