@@ -12,10 +12,12 @@ With this plugin, you are able to assign different effects to items so that when
 
 ## Item Formatting
 ```yaml
-"Item-ID:Item-Damage":
-    - [Effect-ID,Effect-Amplifier,Effect-Duration]
-    - [Effect-ID,Effect-Amplifier,Effect-Duration]
-    - [Effect-ID,Effect-Amplifier,Effect-Duration]
+"Item-ID:Item-Damage:
+    "Name": "Custom-Name"
+    "Effects":
+        - [Effect-ID,Effect-Amplifier,Effect-Duration]
+        - [Effect-ID,Effect-Amplifier,Effect-Duration]
+        - [Effect-ID,Effect-Amplifier,Effect-Duration]
 ```
 
 ## Item Listing Example
@@ -28,30 +30,28 @@ Desired configuration:
 Configuration in config.yml:
 ```yaml
 Consumables:
-  "364":
-    - [15,1,10]
-    - [5,2,30]
-  "260":
-    - [1,3,15]
-    - [16,1,0]
+  "364:0":
+    "Name": "§aAwesome §6Steak"
+    "Effects":
+      - [15,1,10]
+      - [5,2,30]
+  "260:0":
+    "Effects":
+      - [1,3,15]
+      - [16,1,0]
 
 Non-Consumables:
-  "6:3": 
-    - [2,1,60]
-    - [12,1,30]
-    - [1,3,5]
-  "40":
-    - [2,1,5]
+  "6:3":
+    "Effects":
+      - [2,1,60]
+      - [12,1,30]
+      - [1,3,5]
+  "40:0":
+    "Name": "§bLuck §cMushroom"
+    "Effects":
+      - [2,1,5]
 ```
 
-***
-
-## FoodEffects Details
-* **API:** 3.0.0+
-* **Version:** 1.1.0
-* **Basic Description:** Enables customizable effects for interacting with and consuming items
-* *Easy to edit config.yml file*
-* *Simple code for editing and debugging*
 ***
 
 ## Dependencies

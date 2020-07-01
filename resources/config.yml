@@ -11,37 +11,54 @@
 #                                         $$ |                                      /  \__$$ |
 #                                         $$ |                                      $$    $$/ 
 #                                         $$/                                        $$$$$$/
-VERSION: "1.1.0" # Internal use only
+VERSION: "1.2.0" # Internal use only
+
+# Choose if a player can consume food items even if their hunger bar is full
+# Accepted values are true or false
+Require-Hunger: true
+
+# Choose whether or not a player's hunger should increase/decrease when consuming food items
+# Accepted values are true or false
+Affects-Hunger: true
 
 # This is the syntax for adding effects to items
 # You can use any number of effects
 # If you want an infinite duration for an effect, set it to 0
 # Maximum amplifier for effects is 255
 # See the included examples and format below for more clarification
+# You can also add a custom name to check for or leave it out to just use the ID and damage
 
 # Add items using this format:
-# "Item-ID:Item-Damage":
-#   - [Effect-ID,Effect-Amplifier,Effect-Duration]
-#   - [Effect-ID,Effect-Amplifier,Effect-Duration]
-#   - [Effect-ID,Effect-Amplifier,Effect-Duration]
+# "Item-ID:Item-Damage:
+#   "Name": "Custom-Name"
+#   "Effects":
+#     - [Effect-ID,Effect-Amplifier,Effect-Duration]
+#     - [Effect-ID,Effect-Amplifier,Effect-Duration]
+#     - [Effect-ID,Effect-Amplifier,Effect-Duration]
 
 # These effects will be added when a player CONSUMES an item
 Consumables:
-  "364": # When steak(ID = 364) is consumed:
-    - [15,1,10] # Give blindness(ID = 15) level 1 for 10 seconds
-    - [5,2,30] # Give strength(ID = 5) level 2 for 30 seconds
-  "260": # When an apple(ID = 260) is consumed:
-    - [1,3,15] # Give speed(ID = 1) level 3 for 15 seconds
-    - [16,1,0] # Give night vision(ID = 16) level 1 infinitely(0) 
+  "364:0": # When steak(ID = 364) is consumed:
+    "Name": "§aAwesome §6Steak" # Check for this custom name
+    "Effects":
+      - [15,1,10] # Give blindness(ID = 15) level 1 for 10 seconds
+      - [5,2,30] # Give strength(ID = 5) level 2 for 30 seconds
+  "260:0": # When an apple(ID = 260) is consumed:
+    "Effects":
+      - [1,3,15] # Give speed(ID = 1) level 3 for 15 seconds
+      - [16,1,0] # Give night vision(ID = 16) level 1 infinitely(0)
 
 # These effects will be added when a player INTERACTS with the item
 Non-Consumables:
   "6:3": # When interacting with a jungle sapling(ID = 6:3):
-    - [2,1,60] # Give slowness(ID = 2) level 1 for 60 seconds
-    - [12,1,30] # Give fire resistance(ID = 12) level 1 for 30 seconds
-    - [1,3,5] # Give speed(ID = 1) level 3 for 5 seconds
-  "40": # When interacting with a red mushroom(ID = 40):
-    - [2,1,5] # Give slowness(ID = 2) level 1 for 5 seconds
+    "Effects":
+      - [2,1,60] # Give slowness(ID = 2) level 1 for 60 seconds
+      - [12,1,30] # Give fire resistance(ID = 12) level 1 for 30 seconds
+      - [1,3,5] # Give speed(ID = 1) level 3 for 5 seconds
+  "40:0": # When interacting with a red mushroom(ID = 40):
+    "Name": "§bLuck §cMushroom" # Check for this custom name
+    "Effects":
+      - [2,1,5] # Give slowness(ID = 2) level 1 for 5 seconds
 
 # Here's a list of all available effects with their IDs
 # ABSORPTION = 22
