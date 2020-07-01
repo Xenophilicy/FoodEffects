@@ -4,4 +4,6 @@ branches:
 projects:
   FoodEffects:
     path: ""
+    lint:
+      phpstan: false
 ...
