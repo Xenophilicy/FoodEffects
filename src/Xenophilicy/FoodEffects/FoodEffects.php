@@ -102,7 +102,6 @@ class FoodEffects extends PluginBase implements Listener {
         $player = $event->getPlayer();
         $item = $event->getItem();
         $idFull = $item->getId().":".$item->getDamage();
-        var_dump(round($player->getFood()) < 20);
         if(!(round($player->getFood()) < 20) && self::$settings["Require-Hunger"]) return;
         foreach(self::$consumables as $key => $values){
             $effects = $values["Effects"];
@@ -110,7 +109,6 @@ class FoodEffects extends PluginBase implements Listener {
             if($name && $item->getCustomName() !== $name) continue;
             if($idFull !== (string)$key) continue;
             if(!self::$settings["Affects-Hunger"]) $event->setCancelled();
-            var_dump($effects);
             foreach($effects as $effValues){
                 $effectInstance = new EffectInstance(Effect::getEffect($effValues[0]));
                 $duration = $effValues[2] > 0 ? $effValues[2]*20 : 2147483647;
